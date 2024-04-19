@@ -24,9 +24,13 @@ internal class Mod
 
     public ModData Data { get; set; }
 
-    private InstallerPage ModPage => _modType == SectionType.Blas1Mods
-        ? Core.Blas1ModPage
-        : Core.Blas2ModPage;
+    private InstallerPage ModPage => _modType switch
+    {
+        SectionType.Blas1Mods => Core.Blas1ModPage,
+        SectionType.Blas2Mods => Core.Blas2ModPage,
+        SectionType.HikeMods => Core.HikeModPage,
+        _ => throw new Exception($"Invalid mod type: {_modType}")
+    };
 
     public bool RequiresDll(string dllName) =>
         Data.requiredDlls != null && Data.requiredDlls.Contains(dllName);
@@ -78,9 +82,17 @@ internal class Mod
     public string PathToLocalizationFile => $"{RootFolder}/Modding/localization/{Data.name}.txt";
     public string PathToLogFile => $"{RootFolder}/Modding/logs/{Data.name}.log";
 
+    private string PathToCache => _modType switch
+    {
+        SectionType.Blas1Mods => "blas1mods",
+        SectionType.Blas2Mods => "blas2mods",
+        SectionType.HikeMods => "hikemods",
+        _ => throw new Exception($"Invalid mod type: {_modType}")
+    };
+
     public bool ExistsInCache(string fileName, out string cachePath)
     {
-        cachePath = $"{Core.DataCache}/blas{(_modType == SectionType.Blas1Mods ? "1" : "2")}mods/{Data.name}/{Data.latestVersion}/{fileName}";
+        cachePath = $"{Core.DataCache}/{PathToCache}/{Data.name}/{Data.latestVersion}/{fileName}";
         Directory.CreateDirectory(Path.GetDirectoryName(cachePath));
 
         return File.Exists(cachePath) && new FileInfo(cachePath).Length > 0;

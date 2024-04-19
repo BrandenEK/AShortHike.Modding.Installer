@@ -118,7 +118,6 @@ namespace Blasphemous.Modding.Installer
             _bottom_blas1mod.AutoScroll = true;
             _bottom_blas1mod.AutoScrollMargin = new Size(0, 15);
             _bottom_blas1mod.BackColor = Color.FromArgb(52, 52, 52);
-            _bottom_blas1mod.Controls.Add(_bottom_hikemod);
             _bottom_blas1mod.Controls.Add(_bottom_blas1mod_scroll);
             _bottom_blas1mod.Dock = DockStyle.Fill;
             _bottom_blas1mod.Location = new Point(0, 0);
@@ -719,6 +718,7 @@ namespace Blasphemous.Modding.Installer
             _bottom.Controls.Add(_bottom_blas1mod);
             _bottom.Controls.Add(_bottom_blas1skin);
             _bottom.Controls.Add(_bottom_blas2mod);
+            _bottom.Controls.Add(_bottom_hikemod);
             _bottom.Controls.Add(_bottom_validation);
             _bottom.Location = new Point(250, 120);
             _bottom.Name = "_bottom";
@@ -785,9 +785,9 @@ namespace Blasphemous.Modding.Installer
             // _bottom_hikemod_scroll
             // 
             _bottom_hikemod_scroll.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
-            _bottom_hikemod_scroll.Location = new Point(2884, 15);
+            _bottom_hikemod_scroll.Location = new Point(1014, 15);
             _bottom_hikemod_scroll.Name = "_bottom_hikemod_scroll";
-            _bottom_hikemod_scroll.Size = new Size(20, 1182);
+            _bottom_hikemod_scroll.Size = new Size(20, 619);
             _bottom_hikemod_scroll.TabIndex = 2;
             _bottom_hikemod_scroll.Visible = false;
             // 

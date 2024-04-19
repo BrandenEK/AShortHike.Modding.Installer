@@ -51,11 +51,11 @@ static class Core
         string blas1modLocalPath = DataCache + "/blas1mods.json";
         string blas1skinLocalPath = DataCache + "/blas1skins.json";
         string blas2modLocalPath = DataCache + "/blas2mods.json";
-        string hikeModLocalPath = DataCache + "/shorthikemods.json";
+        string hikeModLocalPath = DataCache + "/hikemods.json";
 
         string blas1modRemotePath = "https://raw.githubusercontent.com/BrandenEK/Blasphemous-Mod-Installer/main/BlasphemousMods.json";
         string blas2modRemotePath = "https://raw.githubusercontent.com/BrandenEK/Blasphemous-Mod-Installer/main/BlasphemousIIMods.json";
-        string hikeModRemotePath = "";
+        string hikeModRemotePath = "https://raw.githubusercontent.com/BrandenEK/AShortHike.ModInstaller/main/ShortHikeMods.json";
 
         var blas1modGrouper = new ModGrouper(blas1modTitle, blas1mods);
         var blas1skinGrouper = new SkinGrouper(blas1skinTitle, blas1skins);
@@ -79,11 +79,11 @@ static class Core
 
         var blas1Validator = new Blas1Validator();
         var blas2Validator = new Blas2Validator();
-        var hikeValidator = new Blas2Validator(); // make hike one
+        var hikeValidator = new HikeValidator();
 
         var blas1Starter = new Blas1Starter(blas1Validator);
         var blas2Starter = new Blas2Starter(blas2Validator);
-        var hikeStarter = new Blas2Starter(hikeValidator); // make hike one
+        var hikeStarter = new HikeStarter(hikeValidator);
 
         var modPreviewer = new ModPreviewer(UIHandler.PreviewName, UIHandler.PreviewDescription, UIHandler.PreviewVersion);
         var skinPreviewer = new SkinPreviewer(UIHandler.PreviewBackground);
