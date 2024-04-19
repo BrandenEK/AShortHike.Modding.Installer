@@ -86,7 +86,7 @@ internal class GithubHandler
     /// <returns></returns>
     private async void CheckForNewerInstallerRelease()
     {
-        Release latestRelease = await GetLatestReleaseAsync("BrandenEK", "Blasphemous-Mod-Installer");
+        Release latestRelease = await GetLatestReleaseAsync("BrandenEK", "AShortHike.ModInstaller");
         if (latestRelease is null)
             return;
 

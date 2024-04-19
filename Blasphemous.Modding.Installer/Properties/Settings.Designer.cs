@@ -163,5 +163,40 @@ namespace Blasphemous.Modding.Installer.Properties {
                 this["Blas2ModTime"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public byte HikeModSort {
+            get {
+                return ((byte)(this["HikeModSort"]));
+            }
+            set {
+                this["HikeModSort"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string HikeRootFolder {
+            get {
+                return ((string)(this["HikeRootFolder"]));
+            }
+            set {
+                this["HikeRootFolder"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.DateTime HikeModTime {
+            get {
+                return ((global::System.DateTime)(this["HikeModTime"]));
+            }
+            set {
+                this["HikeModTime"] = value;
+            }
+        }
     }
 }

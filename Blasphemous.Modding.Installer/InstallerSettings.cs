@@ -5,15 +5,18 @@ public class InstallerSettings
 {
     public string Blas1RootFolder { get; set; } = string.Empty;
     public string Blas2RootFolder { get; set; } = string.Empty;
+    public string HikeRootFolder { get; set; } = string.Empty;
 
     public SectionType CurrentSection { get; set; }
     public SortType Blas1ModSort { get; set; }
     public SortType Blas1SkinSort { get; set; }
     public SortType Blas2ModSort { get; set; }
+    public SortType HikeModSort { get; set; }
 
     public DateTime Blas1ModTime { get; set; }
     public DateTime Blas1SkinTime { get; set; }
     public DateTime Blas2ModTime { get; set; }
+    public DateTime HikeModTime { get; set; }
 
     // Root path
 
@@ -24,6 +27,7 @@ public class InstallerSettings
             SectionType.Blas1Mods => Blas1RootFolder,
             SectionType.Blas1Skins => Blas1RootFolder,
             SectionType.Blas2Mods => Blas2RootFolder,
+            SectionType.HikeMods => HikeRootFolder,
             _ => throw new ArgumentException("Invalid section type", nameof(section))
         };
     }
@@ -35,6 +39,7 @@ public class InstallerSettings
             case SectionType.Blas1Mods: Blas1RootFolder = path; break;
             case SectionType.Blas1Skins: Blas1RootFolder = path; break;
             case SectionType.Blas2Mods: Blas2RootFolder = path; break;
+            case SectionType.HikeMods: HikeRootFolder = path; break;
             default: throw new ArgumentException("Invalid section type", nameof(section));
         }
     }
@@ -54,6 +59,7 @@ public class InstallerSettings
             SectionType.Blas1Mods => Blas1ModSort,
             SectionType.Blas1Skins => Blas1SkinSort,
             SectionType.Blas2Mods => Blas2ModSort,
+            SectionType.HikeMods => HikeModSort,
             _ => throw new ArgumentException("Invalid section type", nameof(section))
         };
     }
@@ -65,6 +71,7 @@ public class InstallerSettings
             case SectionType.Blas1Mods: Blas1ModSort = sort; break;
             case SectionType.Blas1Skins: Blas1SkinSort = sort; break;
             case SectionType.Blas2Mods: Blas2ModSort = sort; break;
+            case SectionType.HikeMods: HikeModSort = sort; break;
             default: throw new ArgumentException("Invalid section type", nameof(section));
         }
     }
@@ -84,6 +91,7 @@ public class InstallerSettings
             SectionType.Blas1Mods => Blas1ModTime,
             SectionType.Blas1Skins => Blas1SkinTime,
             SectionType.Blas2Mods => Blas2ModTime,
+            SectionType.HikeMods => HikeModTime,
             _ => throw new ArgumentException("Invalid section type", nameof(section))
         };
     }
@@ -95,6 +103,7 @@ public class InstallerSettings
             case SectionType.Blas1Mods: Blas1ModTime = time; break;
             case SectionType.Blas1Skins: Blas1SkinTime = time; break;
             case SectionType.Blas2Mods: Blas2ModTime = time; break;
+            case SectionType.HikeMods: HikeModTime = time; break;
             default: throw new ArgumentException("Invalid section type", nameof(section));
         }
     }
