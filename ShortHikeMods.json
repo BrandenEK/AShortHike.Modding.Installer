@@ -1,0 +1,12 @@
+[
+  {
+    "Name": "Randomizer",
+    "Author": "Chandler && Damocles",
+    "Description": "The client mod for A Short Hike through Archipelago",
+    "InitialReleaseDate": "2023-09-18",
+    "GithubAuthor": "BrandenEK",
+    "GithubRepo": "AShortHike.Randomizer",
+    "PluginFile": "Randomizer.dll",
+    "RequiredDlls": [ "Archipelago.MultiClient.Net.dll" ]
+  }
+]
