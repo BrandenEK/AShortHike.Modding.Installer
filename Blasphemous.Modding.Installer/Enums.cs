@@ -3,10 +3,10 @@ namespace Blasphemous.Modding.Installer;
 
 public enum SectionType
 {
+    HikeMods,
     Blas1Mods,
     Blas1Skins,
     Blas2Mods,
-    HikeMods,
 }
 
 public enum SortType
