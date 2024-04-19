@@ -20,6 +20,7 @@ public partial class UIHandler : Form
             page.Previewer.Clear();
 
         RefreshSize();
+        CheckBlasphemousButtons();
         OpenSection(Core.SettingsHandler.Properties.CurrentSection);
     }
 
@@ -37,6 +38,16 @@ public partial class UIHandler : Form
     // Update installer
 
     public void UpdatePanelSetVisible(bool visible) => _top_warning_outer.Visible = visible;
+
+    private void CheckBlasphemousButtons()
+    {
+        if (!Core.TempShowBlasphemous)
+        {
+            _left_page_blas1mod.Visible = false;
+            _left_page_blas1skin.Visible = false;
+            _left_page_blas2mod.Visible = false;
+        }
+    }
 
     // Validation screen
 

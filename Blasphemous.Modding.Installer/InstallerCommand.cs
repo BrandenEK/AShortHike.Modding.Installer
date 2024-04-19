@@ -10,4 +10,7 @@ public class InstallerCommand : CommandData
 
     [BooleanArgument('i', "ignore")]
     public bool IgnoreTime { get; set; } = false;
+
+    [BooleanArgument('b', "blas")]
+    public bool ShowBlasphemous { get; set; } = false;
 }

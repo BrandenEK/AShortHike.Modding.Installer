@@ -37,6 +37,7 @@ static class Core
         SettingsHandler = new SettingsHandler();
         GithubHandler = new GithubHandler(cmd.GithubToken);
         TempIgnoreTime = cmd.IgnoreTime;
+        TempShowBlasphemous = cmd.ShowBlasphemous;
 
         List<Mod> blas1mods = new List<Mod>();
         List<Skin> blas1skins = new List<Skin>();
@@ -133,6 +134,7 @@ static class Core
     }
 
     public static bool TempIgnoreTime { get; private set; }
+    public static bool TempShowBlasphemous { get; private set; }
 
     public static UIHandler UIHandler { get; private set; }
     public static SettingsHandler SettingsHandler { get; private set; }
