@@ -43,6 +43,7 @@ namespace Blasphemous.Modding.Installer
             _left_startModded = new Button();
             _left_changePath = new Button();
             _left_page = new Panel();
+            _left_page_shmod = new Button();
             _left_page_blas1mod = new Button();
             _left_page_blas1skin = new Button();
             _left_page_blas2mod = new Button();
@@ -273,6 +274,7 @@ namespace Blasphemous.Modding.Installer
             // 
             // _left_page
             // 
+            _left_page.Controls.Add(_left_page_shmod);
             _left_page.Controls.Add(_left_page_blas1mod);
             _left_page.Controls.Add(_left_page_blas1skin);
             _left_page.Controls.Add(_left_page_blas2mod);
@@ -280,6 +282,26 @@ namespace Blasphemous.Modding.Installer
             _left_page.Name = "_left_page";
             _left_page.Size = new Size(220, 235);
             _left_page.TabIndex = 14;
+            // 
+            // _left_page_shmod
+            // 
+            _left_page_shmod.BackColor = Color.FromArgb(30, 30, 30);
+            _left_page_shmod.FlatAppearance.BorderColor = Color.FromArgb(30, 30, 30);
+            _left_page_shmod.FlatAppearance.MouseDownBackColor = Color.FromArgb(30, 30, 30);
+            _left_page_shmod.FlatAppearance.MouseOverBackColor = Color.FromArgb(30, 30, 30);
+            _left_page_shmod.FlatStyle = FlatStyle.Flat;
+            _left_page_shmod.Font = new Font("Trebuchet MS", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            _left_page_shmod.ForeColor = SystemColors.ButtonHighlight;
+            _left_page_shmod.Location = new Point(0, 165);
+            _left_page_shmod.Name = "_left_page_shmod";
+            _left_page_shmod.Size = new Size(220, 35);
+            _left_page_shmod.TabIndex = 4;
+            _left_page_shmod.Text = "Short Hike Mods";
+            _left_page_shmod.UseVisualStyleBackColor = false;
+            _left_page_shmod.Click += ClickedShortHikeMods;
+            _left_page_shmod.MouseEnter += ShowSideButtonBorder;
+            _left_page_shmod.MouseLeave += HideSideButtonBorder;
+            _left_page_shmod.MouseUp += RemoveButtonFocus;
             // 
             // _left_page_blas1mod
             // 
@@ -290,7 +312,7 @@ namespace Blasphemous.Modding.Installer
             _left_page_blas1mod.FlatStyle = FlatStyle.Flat;
             _left_page_blas1mod.Font = new Font("Trebuchet MS", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
             _left_page_blas1mod.ForeColor = SystemColors.ButtonHighlight;
-            _left_page_blas1mod.Location = new Point(0, 60);
+            _left_page_blas1mod.Location = new Point(0, 30);
             _left_page_blas1mod.Name = "_left_page_blas1mod";
             _left_page_blas1mod.Size = new Size(220, 35);
             _left_page_blas1mod.TabIndex = 1;
@@ -310,7 +332,7 @@ namespace Blasphemous.Modding.Installer
             _left_page_blas1skin.FlatStyle = FlatStyle.Flat;
             _left_page_blas1skin.Font = new Font("Trebuchet MS", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
             _left_page_blas1skin.ForeColor = SystemColors.ButtonHighlight;
-            _left_page_blas1skin.Location = new Point(0, 105);
+            _left_page_blas1skin.Location = new Point(0, 75);
             _left_page_blas1skin.Name = "_left_page_blas1skin";
             _left_page_blas1skin.Size = new Size(220, 35);
             _left_page_blas1skin.TabIndex = 2;
@@ -330,7 +352,7 @@ namespace Blasphemous.Modding.Installer
             _left_page_blas2mod.FlatStyle = FlatStyle.Flat;
             _left_page_blas2mod.Font = new Font("Trebuchet MS", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
             _left_page_blas2mod.ForeColor = SystemColors.ButtonHighlight;
-            _left_page_blas2mod.Location = new Point(0, 150);
+            _left_page_blas2mod.Location = new Point(0, 120);
             _left_page_blas2mod.Name = "_left_page_blas2mod";
             _left_page_blas2mod.Size = new Size(220, 35);
             _left_page_blas2mod.TabIndex = 3;
@@ -831,6 +853,7 @@ namespace Blasphemous.Modding.Installer
         private Panel _top;
         private Button _left_startModded;
         private Button _left_startVanilla;
+        private Button _left_page_shmod;
     }
 }
 

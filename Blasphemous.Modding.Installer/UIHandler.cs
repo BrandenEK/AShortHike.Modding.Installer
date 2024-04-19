@@ -211,6 +211,8 @@ public partial class UIHandler : Form
 
     private void ClickedBlas2Mods(object sender, EventArgs e) => OpenSection(SectionType.Blas2Mods);
 
+    private void ClickedShortHikeMods(object sender, EventArgs e) => OpenSection(0);
+
     private void ClickedSettings(object sender, EventArgs e) { }
 
     #endregion Side section top
