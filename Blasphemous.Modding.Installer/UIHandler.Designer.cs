@@ -79,6 +79,8 @@ namespace Blasphemous.Modding.Installer
             _bottom_blas1skin_scroll = new VScrollBar();
             _bottom_blas2mod = new Panel();
             _bottom_blas2mod_scroll = new VScrollBar();
+            _bottom_hikemod = new Panel();
+            _bottom_hikemod_scroll = new VScrollBar();
             _bottom_blas1mod.SuspendLayout();
             _bottom_validation.SuspendLayout();
             _main.SuspendLayout();
@@ -99,6 +101,7 @@ namespace Blasphemous.Modding.Installer
             _bottom.SuspendLayout();
             _bottom_blas1skin.SuspendLayout();
             _bottom_blas2mod.SuspendLayout();
+            _bottom_hikemod.SuspendLayout();
             SuspendLayout();
             // 
             // _bottom_blas1mod_scroll
@@ -115,6 +118,7 @@ namespace Blasphemous.Modding.Installer
             _bottom_blas1mod.AutoScroll = true;
             _bottom_blas1mod.AutoScrollMargin = new Size(0, 15);
             _bottom_blas1mod.BackColor = Color.FromArgb(52, 52, 52);
+            _bottom_blas1mod.Controls.Add(_bottom_hikemod);
             _bottom_blas1mod.Controls.Add(_bottom_blas1mod_scroll);
             _bottom_blas1mod.Dock = DockStyle.Fill;
             _bottom_blas1mod.Location = new Point(0, 0);
@@ -765,6 +769,28 @@ namespace Blasphemous.Modding.Installer
             _bottom_blas2mod_scroll.TabIndex = 2;
             _bottom_blas2mod_scroll.Visible = false;
             // 
+            // _bottom_hikemod
+            // 
+            _bottom_hikemod.AutoScroll = true;
+            _bottom_hikemod.AutoScrollMargin = new Size(0, 15);
+            _bottom_hikemod.BackColor = Color.FromArgb(52, 52, 52);
+            _bottom_hikemod.Controls.Add(_bottom_hikemod_scroll);
+            _bottom_hikemod.Dock = DockStyle.Fill;
+            _bottom_hikemod.Location = new Point(0, 0);
+            _bottom_hikemod.Name = "_bottom_hikemod";
+            _bottom_hikemod.Size = new Size(1050, 680);
+            _bottom_hikemod.TabIndex = 4;
+            _bottom_hikemod.Visible = false;
+            // 
+            // _bottom_hikemod_scroll
+            // 
+            _bottom_hikemod_scroll.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            _bottom_hikemod_scroll.Location = new Point(2884, 15);
+            _bottom_hikemod_scroll.Name = "_bottom_hikemod_scroll";
+            _bottom_hikemod_scroll.Size = new Size(20, 1182);
+            _bottom_hikemod_scroll.TabIndex = 2;
+            _bottom_hikemod_scroll.Visible = false;
+            // 
             // UIHandler
             // 
             AutoScaleDimensions = new SizeF(6F, 15F);
@@ -801,6 +827,7 @@ namespace Blasphemous.Modding.Installer
             _bottom.ResumeLayout(false);
             _bottom_blas1skin.ResumeLayout(false);
             _bottom_blas2mod.ResumeLayout(false);
+            _bottom_hikemod.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -854,6 +881,8 @@ namespace Blasphemous.Modding.Installer
         private Button _left_startModded;
         private Button _left_startVanilla;
         private Button _left_page_shmod;
+        private Panel _bottom_hikemod;
+        private VScrollBar _bottom_hikemod_scroll;
     }
 }
 

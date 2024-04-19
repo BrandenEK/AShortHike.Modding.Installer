@@ -41,39 +41,49 @@ static class Core
         List<Mod> blas1mods = new List<Mod>();
         List<Skin> blas1skins = new List<Skin>();
         List<Mod> blas2mods = new List<Mod>();
+        List<Mod> hikeMods = new();
 
         string blas1modTitle = "Blasphemous Mods";
         string blas1skinTitle = "Blasphemous Skins";
         string blas2modTitle = "Blasphemous II Mods";
+        string hikeModTitle = "Short Hike Mods";
 
         string blas1modLocalPath = DataCache + "/blas1mods.json";
         string blas1skinLocalPath = DataCache + "/blas1skins.json";
         string blas2modLocalPath = DataCache + "/blas2mods.json";
+        string hikeModLocalPath = DataCache + "/shorthikemods.json";
 
         string blas1modRemotePath = "https://raw.githubusercontent.com/BrandenEK/Blasphemous-Mod-Installer/main/BlasphemousMods.json";
         string blas2modRemotePath = "https://raw.githubusercontent.com/BrandenEK/Blasphemous-Mod-Installer/main/BlasphemousIIMods.json";
+        string hikeModRemotePath = "";
 
         var blas1modGrouper = new ModGrouper(blas1modTitle, blas1mods);
         var blas1skinGrouper = new SkinGrouper(blas1skinTitle, blas1skins);
         var blas2modGrouper = new ModGrouper(blas2modTitle, blas2mods);
+        var hikeModGrouper = new ModGrouper(hikeModTitle, hikeMods);
 
         var blas1modUI = new GenericUIHolder<Mod>(UIHandler.GetUIElementByType(SectionType.Blas1Mods), blas1mods);
         var blas1skinUI = new GenericUIHolder<Skin>(UIHandler.GetUIElementByType(SectionType.Blas1Skins), blas1skins);
         var blas2modUI = new GenericUIHolder<Mod>(UIHandler.GetUIElementByType(SectionType.Blas2Mods), blas2mods);
+        var hikeModUI = new GenericUIHolder<Mod>(UIHandler.GetUIElementByType(SectionType.HikeMods), hikeMods);
 
         var blas1modSorter = new ModSorter(blas1modUI, blas1mods, SectionType.Blas1Mods);
         var blas1skinSorter = new SkinSorter(blas1skinUI, blas1skins, SectionType.Blas1Skins);
         var blas2modSorter = new ModSorter(blas2modUI, blas2mods, SectionType.Blas2Mods);
+        var hikeModSorter = new ModSorter(hikeModUI, hikeMods, SectionType.HikeMods);
 
         var blas1modLoader = new ModLoader(blas1modLocalPath, blas1modRemotePath, blas1modUI, blas1modSorter, blas1mods, SectionType.Blas1Mods);
         var blas1skinLoader = new SkinLoader(blas1skinLocalPath, "blasphemous1", blas1skinUI, blas1skinSorter, blas1skins, SectionType.Blas1Skins);
         var blas2modLoader = new ModLoader(blas2modLocalPath, blas2modRemotePath, blas2modUI, blas2modSorter, blas2mods, SectionType.Blas2Mods);
+        var hikeModLoader = new ModLoader(hikeModLocalPath, hikeModRemotePath, hikeModUI, hikeModSorter, hikeMods, SectionType.HikeMods);
 
         var blas1Validator = new Blas1Validator();
         var blas2Validator = new Blas2Validator();
+        var hikeValidator = new Blas2Validator(); // make hike one
 
         var blas1Starter = new Blas1Starter(blas1Validator);
         var blas2Starter = new Blas2Starter(blas2Validator);
+        var hikeStarter = new Blas2Starter(hikeValidator); // make hike one
 
         var modPreviewer = new ModPreviewer(UIHandler.PreviewName, UIHandler.PreviewDescription, UIHandler.PreviewVersion);
         var skinPreviewer = new SkinPreviewer(UIHandler.PreviewBackground);
@@ -105,9 +115,19 @@ static class Core
             blas2Validator,
             blas2Starter);
 
+        var hikeModPage = new InstallerPage(hikeModTitle, Resources.background_sh,
+            hikeModGrouper,
+            hikeModLoader,
+            modPreviewer,
+            hikeModSorter,
+            hikeModUI,
+            hikeValidator,
+            hikeStarter);
+
         _pages.Add(SectionType.Blas1Mods, blas1modPage);
         _pages.Add(SectionType.Blas1Skins, blas1skinPage);
         _pages.Add(SectionType.Blas2Mods, blas2modPage);
+        _pages.Add(SectionType.HikeMods, hikeModPage);
 
         Application.Run(UIHandler);
     }
@@ -126,6 +146,7 @@ static class Core
     public static InstallerPage Blas1ModPage => _pages[SectionType.Blas1Mods];
     public static InstallerPage Blas1SkinPage => _pages[SectionType.Blas1Skins];
     public static InstallerPage Blas2ModPage => _pages[SectionType.Blas2Mods];
+    public static InstallerPage HikeModPage => _pages[SectionType.HikeMods];
 
     public static string DataCache => Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/BlasModInstaller";
 

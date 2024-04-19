@@ -91,6 +91,7 @@ public partial class UIHandler : Form
             SectionType.Blas1Mods => _bottom_blas1mod,
             SectionType.Blas1Skins => _bottom_blas1skin,
             SectionType.Blas2Mods => _bottom_blas2mod,
+            SectionType.HikeMods => _bottom_hikemod,
             _ => throw new Exception("Invalid section type: " + type),
         };
     }
@@ -211,7 +212,7 @@ public partial class UIHandler : Form
 
     private void ClickedBlas2Mods(object sender, EventArgs e) => OpenSection(SectionType.Blas2Mods);
 
-    private void ClickedShortHikeMods(object sender, EventArgs e) => OpenSection(0);
+    private void ClickedShortHikeMods(object sender, EventArgs e) => OpenSection(SectionType.HikeMods);
 
     private void ClickedSettings(object sender, EventArgs e) { }
 
