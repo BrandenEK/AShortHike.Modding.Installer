@@ -1,5 +1,14 @@
 [
   {
+    "Name": "Modding API",
+    "Author": "Damocles",
+    "Description": "A modding API that assists the creation of mods for A Short Hike",
+    "InitialReleaseDate": "2024-04-21",
+    "GithubAuthor": "BrandenEK",
+    "GithubRepo": "AShortHike.ModdingAPI",
+    "PluginFile": "ModdingAPI.dll"
+  },
+  {
     "Name": "Randomizer",
     "Author": "Chandler && Damocles",
     "Description": "The client mod for A Short Hike through Archipelago",
@@ -7,6 +16,17 @@
     "GithubAuthor": "BrandenEK",
     "GithubRepo": "AShortHike.Randomizer",
     "PluginFile": "Randomizer.dll",
-    "RequiredDlls": [ "Archipelago.MultiClient.Net.dll" ]
+    "RequiredDlls": [ "Archipelago.MultiClient.Net.dll" ],
+    "Dependencies": [ "Modding API" ]
+  },
+  {
+    "Name": "Map Tracker",
+    "Author": "Damocles",
+    "Description": "Displays an in-game map with the player's position",
+    "InitialReleaseDate": "2024-04-21",
+    "GithubAuthor": "BrandenEK",
+    "GithubRepo": "AShortHike.MapTracker",
+    "PluginFile": "MapTracker.dll",
+    "Dependencies": [ "Modding API" ]
   }
 ]
