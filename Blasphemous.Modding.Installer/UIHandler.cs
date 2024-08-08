@@ -1,33 +1,25 @@
-﻿using Blasphemous.Modding.Installer.Validation;
+﻿using Basalt.BetterForms;
+using Basalt.Framework.Logging;
+using Blasphemous.Modding.Installer.PageComponents.Validators;
 
 namespace Blasphemous.Modding.Installer;
 
-public partial class UIHandler : Form
+public partial class UIHandler : BasaltForm
 {
-    public UIHandler()
+    protected override void OnFormOpenPost()
     {
-        Directory.CreateDirectory(Core.DataCache);
-
-        InitializeComponent();
-    }
-
-    private void OnFormOpen(object sender, EventArgs e)
-    {
-        Text = "Short Hike Mod Installer v" + Core.CurrentVersion.ToString(3);
         Core.SettingsHandler.Load();
 
         foreach (var page in Core.AllPages)
             page.Previewer.Clear();
 
-        RefreshSize();
         CheckBlasphemousButtons();
         OpenSection(Core.SettingsHandler.Properties.CurrentSection);
     }
 
-    private void OnFormClose(object sender, FormClosingEventArgs e)
+    protected override void OnFormClose(FormClosingEventArgs e)
     {
         Core.SettingsHandler.Save();
-        Logger.Info("Closed installer");
     }
 
     public static bool PromptQuestion(string title, string question)
@@ -112,30 +104,11 @@ public partial class UIHandler : Form
     public Label PreviewVersion => _left_details_version;
     public Panel PreviewBackground => _left_details_inner;
 
-    // Scaling and focusing
+    // UI focusing
 
-    public void RefreshSize()
-    {
-        _main.Location = ClientRectangle.Location;
-        _main.Size = ClientRectangle.Size;
-    }
-
-    private void MainForm_SizeChanged(object sender, EventArgs e) => RefreshSize();
-
-    public void RemoveButtonFocus(object sender, EventArgs e)
+    public void RemoveButtonFocus(object? sender, EventArgs e)
     {
         _top_text.Focus();
-    }
-
-    private void ShowSideButtonBorder(object sender, EventArgs e)
-    {
-        (sender as Button).FlatAppearance.BorderColor = Color.White;
-    }
-
-    private void HideSideButtonBorder(object sender, EventArgs e)
-    {
-        (sender as Button).FlatAppearance.BorderColor = Color.FromArgb(30, 30, 30);
-        RemoveButtonFocus(null, null);
     }
 
     private void SetSortByBox(SortType sort)
@@ -208,9 +181,9 @@ public partial class UIHandler : Form
         _left_divider3.Visible = validated;
 
         _left_details_outer.Visible = validated;
-        _left_startVanilla.Visible = validated;
-        _left_startModded.Visible = validated;
-        _left_changePath.Visible = validated;
+        _left_startVanilla.ExpectedVisibility = validated;
+        _left_startModded.ExpectedVisibility = validated;
+        _left_changePath.ExpectedVisibility = validated;
     }
 
     private void ClickInstallerUpdateLink(object sender, LinkLabelLinkClickedEventArgs e) => Core.GithubHandler.OpenInstallerLink();

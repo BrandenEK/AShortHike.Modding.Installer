@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Basalt.Framework.Logging;
+using Newtonsoft.Json;
 using System.Net;
 
 namespace Blasphemous.Modding.Installer.Skins;
@@ -65,7 +66,7 @@ internal class Skin
 
     public bool ExistsInCache(string fileName, out string cachePath)
     {
-        cachePath = $"{Core.DataCache}/blas1skins/{Data.id}/{Data.version}/{fileName}";
+        cachePath = $"{Core.CacheFolder}/blas1skins/{Data.id}/{Data.version}/{fileName}";
         Directory.CreateDirectory(Path.GetDirectoryName(cachePath));
 
         return File.Exists(cachePath) && new FileInfo(cachePath).Length > 0;
@@ -153,7 +154,7 @@ internal class Skin
         _ui.SetPosition(skinIdx);
     }
 
-    public void MouseEnter(object sender, EventArgs e) => SkinPage.Previewer.PreviewSkin(this);
+    public void OnStartHover() => SkinPage.Previewer.PreviewSkin(this);
 
-    public void MouseLeave(object sender, EventArgs e) => SkinPage.Previewer.Clear();
+    public void OnEndHover() => SkinPage.Previewer.Clear();
 }
