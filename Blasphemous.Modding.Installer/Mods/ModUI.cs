@@ -1,4 +1,7 @@
-﻿namespace Blasphemous.Modding.Installer.Mods;
+﻿using Blasphemous.Modding.Installer.Extensions;
+using Blasphemous.Modding.Installer.UIComponents;
+
+namespace Blasphemous.Modding.Installer.Mods;
 
 internal class ModUI
 {
@@ -12,6 +15,8 @@ internal class ModUI
     private readonly Button readmeButton;
     private readonly Button installButton;
     private readonly Button enableButton;
+
+    private readonly RowColorer _colorer;
 
     public void UpdateUI(string name, string version, string author, bool installed, bool enabled, bool canUpdate)
     {
@@ -46,12 +51,8 @@ internal class ModUI
 
     public void SetPosition(int modIdx)
     {
-        Color backgroundColor = modIdx % 2 == 0 ? Colors.DARK_GRAY : Colors.LIGHT_GRAY;
-
+        _colorer.UpdatePosition(modIdx);
         outerPanel.Location = new Point(0, (Sizes.MOD_HEIGHT - 2) * modIdx - 2);
-        innerPanel.BackColor = backgroundColor;
-        installButton.BackColor = backgroundColor;
-        enableButton.BackColor = backgroundColor;
     }
 
     private bool IsDependencyMod(Mod mod)
@@ -96,8 +97,6 @@ internal class ModUI
             TextAlign = ContentAlignment.MiddleLeft,
             Font = Fonts.MOD_NAME,
         };
-        nameText.MouseEnter += mod.MouseEnter;
-        nameText.MouseLeave += mod.MouseLeave;
 
         authorText = new Label
         {
@@ -184,6 +183,9 @@ internal class ModUI
         enableButton.MouseUp += Core.UIHandler.RemoveButtonFocus;
         enableButton.MouseLeave += Core.UIHandler.RemoveButtonFocus;
 
+        _colorer = new RowColorer(innerPanel, new Control[] { installButton, enableButton });
+        innerPanel.AddMouseEnterEvent(mod.OnStartHover);
+        innerPanel.AddMouseLeaveEvent(mod.OnEndHover);
         parentPanel.AutoScroll = true;
     }
 }

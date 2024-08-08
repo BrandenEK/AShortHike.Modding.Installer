@@ -5,7 +5,7 @@
 ---
 
 ### Automatic installation (Windows only)
-1. Download the most recent version of the installer from the [Releases](https://github.com/BrandenEK/AShortHike.ModInstaller/releases) page
+1. Download the most recent version of the installer from the [Releases](https://github.com/BrandenEK/AShortHike.Modding.Installer/releases) page
 1. Run the 'ShortHikeModInstaller.exe' program (You may need to install the .net runtime)
 
 ---
@@ -27,3 +27,4 @@
 - ```-[g]ithub {token}``` Uses your GitHub OAuth token to increase the API rate limit
 - ```-[i]gnore``` Ignores the wait time of 30 mins before mod versions are rechecked
 - ```-[b]las``` Displays the original blasphemous buttons
+- ```-[d]ebug``` Runs in debug mode with a console

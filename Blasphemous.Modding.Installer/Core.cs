@@ -1,39 +1,55 @@
-﻿using Basalt.CommandParser;
-using Blasphemous.Modding.Installer.Grouping;
-using Blasphemous.Modding.Installer.Loading;
+﻿using Basalt.BetterForms;
+using Basalt.Framework.Logging;
 using Blasphemous.Modding.Installer.Mods;
-using Blasphemous.Modding.Installer.Previewing;
+using Blasphemous.Modding.Installer.PageComponents.Groupers;
+using Blasphemous.Modding.Installer.PageComponents.Loaders;
+using Blasphemous.Modding.Installer.PageComponents.Previewers;
+using Blasphemous.Modding.Installer.PageComponents.Sorters;
+using Blasphemous.Modding.Installer.PageComponents.Starters;
+using Blasphemous.Modding.Installer.PageComponents.UIHolders;
+using Blasphemous.Modding.Installer.PageComponents.Validators;
 using Blasphemous.Modding.Installer.Properties;
 using Blasphemous.Modding.Installer.Skins;
-using Blasphemous.Modding.Installer.Sorting;
-using Blasphemous.Modding.Installer.Starting;
-using Blasphemous.Modding.Installer.UIHolding;
-using Blasphemous.Modding.Installer.Validation;
 
 namespace Blasphemous.Modding.Installer;
 
 static class Core
 {
     [STAThread]
-    static void Main(string[] args)
+    static void Main()
     {
-        Application.EnableVisualStyles();
-        Application.SetCompatibleTextRenderingDefault(false);
-        Logger.Show();
-
-        InstallerCommand cmd = new();
-        try
+        BasaltApplication.Run<UIHandler, InstallerCommand>(InitializeCore, "Short Hike Mod Installer", new string[]
         {
-            cmd.Process(args);
-        }
-        catch (CommandParserException ex)
+            InstallerFolder, CacheFolder
+        });
+    }
+
+    /// <summary>
+    /// When the app is started, clear cache that used to exist in root data folder.
+    /// Get rid of this method after enough time.  Added in 1.6
+    /// </summary>
+    static void TemporaryClearDataFolder()
+    {
+        // Delete all files other than the log
+        foreach (var file in Directory.GetFiles(InstallerFolder).Where(x => Path.GetExtension(x) != ".log"))
         {
-            Logger.Error(ex);
-            Application.Exit();
-            return;
+            Logger.Debug($"Deleting {file} from the installer folder");
+            File.Delete(file);
         }
 
-        UIHandler = new UIHandler();
+        // Delete all directories other than the cache
+        foreach (var dir in Directory.GetDirectories(InstallerFolder).Where(x => Path.GetFileName(x) != "cache"))
+        {
+            Logger.Debug($"Deleting {dir} from the installer folder");
+            Directory.Delete(dir, true);
+        }
+    }
+
+    static void InitializeCore(UIHandler form, InstallerCommand cmd)
+    {
+        TemporaryClearDataFolder();
+
+        UIHandler = form;
         SettingsHandler = new SettingsHandler();
         GithubHandler = new GithubHandler(cmd.GithubToken);
         TempIgnoreTime = cmd.IgnoreTime;
@@ -49,10 +65,10 @@ static class Core
         string blas2modTitle = "Blasphemous II Mods";
         string hikeModTitle = "Short Hike Mods";
 
-        string blas1modLocalPath = DataCache + "/blas1mods.json";
-        string blas1skinLocalPath = DataCache + "/blas1skins.json";
-        string blas2modLocalPath = DataCache + "/blas2mods.json";
-        string hikeModLocalPath = DataCache + "/hikemods.json";
+        string hikeModLocalPath = Path.Combine(CacheFolder, "hikemods.json");
+        string blas1modLocalPath = Path.Combine(CacheFolder, "blas1mods.json");
+        string blas1skinLocalPath = Path.Combine(CacheFolder, "blas1skins.json");
+        string blas2modLocalPath = Path.Combine(CacheFolder, "blas2mods.json");
 
         string blas1modRemotePath = "https://raw.githubusercontent.com/BrandenEK/Blasphemous-Mod-Installer/main/BlasphemousMods.json";
         string blas2modRemotePath = "https://raw.githubusercontent.com/BrandenEK/Blasphemous-Mod-Installer/main/BlasphemousIIMods.json";
@@ -129,8 +145,6 @@ static class Core
         _pages.Add(SectionType.Blas1Skins, blas1skinPage);
         _pages.Add(SectionType.Blas2Mods, blas2modPage);
         _pages.Add(SectionType.HikeMods, hikeModPage);
-
-        Application.Run(UIHandler);
     }
 
     public static bool TempIgnoreTime { get; private set; }
@@ -140,7 +154,7 @@ static class Core
     public static SettingsHandler SettingsHandler { get; private set; }
     public static GithubHandler GithubHandler { get; private set; }
 
-    private static readonly Dictionary<SectionType, InstallerPage> _pages = new Dictionary<SectionType, InstallerPage>();
+    private static readonly Dictionary<SectionType, InstallerPage> _pages = new();
 
     public static InstallerPage CurrentPage => _pages[SettingsHandler.Properties.CurrentSection];
     public static IEnumerable<InstallerPage> AllPages => _pages.Values;
@@ -150,7 +164,6 @@ static class Core
     public static InstallerPage Blas2ModPage => _pages[SectionType.Blas2Mods];
     public static InstallerPage HikeModPage => _pages[SectionType.HikeMods];
 
-    public static string DataCache => Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/BlasModInstaller";
-
-    public static Version CurrentVersion => System.Reflection.Assembly.GetExecutingAssembly().GetName().Version ?? new(0, 1, 0);
+    public static string InstallerFolder { get; } = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "BlasModInstaller");
+    public static string CacheFolder { get; } = Path.Combine(InstallerFolder, "cache");
 }
