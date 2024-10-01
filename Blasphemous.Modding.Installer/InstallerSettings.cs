@@ -4,7 +4,7 @@ public class InstallerSettings
 {
     public WindowSettings Window { get; set; } = new();
 
-    public SectionType LastSection { get; set; } = SectionType.Blas1Mods;
+    public SectionType LastSection { get; set; } = SectionType.HikeMods;
 
     public List<GameSettings> Games { get; set; } = new();
     public List<PageSettings> Pages { get; set; } = new();
