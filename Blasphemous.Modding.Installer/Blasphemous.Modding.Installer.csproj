@@ -10,7 +10,7 @@
     <Product>Short Hike Mod Installer</Product>
     <Authors>Damocles</Authors>
     <Company>Damocles</Company>
-    <Description>Easily installs mods and skins for Blasphemous 1 and 2</Description>
+    <Description>Easily installs mods for A Short Hike</Description>
     <Version>1.7.0</Version>
 
     <Nullable>enable</Nullable>
