@@ -227,7 +227,10 @@ public partial class UIHandler : BasaltForm
         _left_page_blas1skin.Visible = visible;
         _left_page_blas2mod.Visible = visible;
         if (!visible)
+        {
+            _left_page.Height -= 135;
             Core.TempConfig.LastSection = SectionType.HikeMods;
+        }
     }
 
     private void ClickedBlas1Mods(object sender, EventArgs e) => OpenSection(SectionType.Blas1Mods);
