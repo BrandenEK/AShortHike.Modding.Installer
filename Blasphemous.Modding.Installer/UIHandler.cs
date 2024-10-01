@@ -19,7 +19,6 @@ public partial class UIHandler : BasaltForm
         foreach (var page in Core.AllPages)
             page.Previewer.Clear();
 
-        CheckBlasphemousButtons();
         OpenSection(Core.TempConfig.LastSection);
     }
 
@@ -38,16 +37,6 @@ public partial class UIHandler : BasaltForm
     public static bool PromptQuestion(string title, string question)
     {
         return MessageBox.Show(question, title, MessageBoxButtons.OKCancel) == DialogResult.OK;
-    }
-
-    private void CheckBlasphemousButtons()
-    {
-        if (!Core.TempShowBlasphemous)
-        {
-            _left_page_blas1mod.Visible = false;
-            _left_page_blas1skin.Visible = false;
-            _left_page_blas2mod.Visible = false;
-        }
     }
 
     private void RunWithoutEvents(Action action)
@@ -231,6 +220,15 @@ public partial class UIHandler : BasaltForm
     }
 
     // Side section top
+
+    public void UpdateBlasButtonsVisibility(bool visible)
+    {
+        _left_page_blas1mod.Visible = visible;
+        _left_page_blas1skin.Visible = visible;
+        _left_page_blas2mod.Visible = visible;
+        if (!visible)
+            Core.TempConfig.LastSection = SectionType.HikeMods;
+    }
 
     private void ClickedBlas1Mods(object sender, EventArgs e) => OpenSection(SectionType.Blas1Mods);
 

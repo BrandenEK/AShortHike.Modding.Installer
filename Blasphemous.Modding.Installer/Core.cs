@@ -64,7 +64,6 @@ static class Core
 
         UIHandler = form;
         GithubHandler = new GithubHandler(cmd.GithubToken);
-        TempShowBlasphemous = cmd.ShowBlasphemous;
 
         IIconLoader iconLoader = new EmbeddedIconLoader();
 
@@ -214,9 +213,9 @@ static class Core
         _pages.Add(SectionType.Blas1Skins, blas1skinPage);
         _pages.Add(SectionType.Blas2Mods, blas2modPage);
         _pages.Add(SectionType.HikeMods, hikeModPage);
-    }
 
-    public static bool TempShowBlasphemous { get; private set; }
+        UIHandler.UpdateBlasButtonsVisibility(cmd.ShowBlasphemous);
+    }
 
     // Config
 
