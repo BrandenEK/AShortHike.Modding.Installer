@@ -8,30 +8,10 @@ public partial class UIHandler : BasaltForm
 {
     private bool _disableEvents = false;
 
-    protected override void OnFormOpenPost()
+    protected override void OnFormOpen()
     {
-        // Load window state
-        WindowSettings window = Core.TempConfig.Window;
-        WindowState = window.IsMaximized ? FormWindowState.Maximized : FormWindowState.Normal;
-        Location = window.Location;
-        Size = window.Size;
-
-        foreach (var page in Core.AllPages)
-            page.Previewer.Clear();
-
+        ClearPreview();
         OpenSection(Core.TempConfig.LastSection);
-    }
-
-    protected override void OnFormClose(FormClosingEventArgs e)
-    {
-        // Save window state
-        Core.TempConfig.Window = new WindowSettings()
-        {
-            Location = WindowState == FormWindowState.Normal ? Location : RestoreBounds.Location,
-            Size = WindowState == FormWindowState.Normal ? Size : RestoreBounds.Size,
-            IsMaximized = WindowState == FormWindowState.Maximized
-        };
-        Core.Temp_SaveConfig();
     }
 
     public static bool PromptQuestion(string title, string question)
@@ -74,11 +54,6 @@ public partial class UIHandler : BasaltForm
     // UI retrieval
 
     public Panel DataHolder => _bottom_holder;
-
-    public Label PreviewName => _left_details_name;
-    public Label PreviewDescription => _left_details_desc;
-    public Label PreviewVersion => _left_details_version;
-    public Panel PreviewBackground => _left_details_inner;
 
     // UI focusing
 
@@ -217,7 +192,7 @@ public partial class UIHandler : BasaltForm
         Core.CurrentPage.Validator.OnClickToolStatus();
     }
 
-    // Side section top
+    // Side section paging
 
     public void UpdateBlasButtonsVisibility(bool visible)
     {
@@ -239,7 +214,29 @@ public partial class UIHandler : BasaltForm
 
     private void ClickedShortHikeMods(object sender, EventArgs e) => OpenSection(SectionType.HikeMods);
 
-    // Side section middle
+    // Side section previewing
+
+    public void UpdatePreview(string name, string description, string version, Bitmap? image)
+    {
+        _left_details_name.Text = name;
+        _left_details_name.Visible = !string.IsNullOrEmpty(name);
+
+        _left_details_desc.Text = description;
+        _left_details_desc.Visible = !string.IsNullOrEmpty(description);
+
+        _left_details_version.Text = version;
+        _left_details_version.Visible = !string.IsNullOrEmpty(version);
+
+        _left_details_inner.BackgroundImage?.Dispose();
+        _left_details_inner.BackgroundImage = image;
+    }
+
+    public void ClearPreview()
+    {
+        UpdatePreview(string.Empty, string.Empty, string.Empty, null);
+    }
+
+    // Side section sorting
 
     private void ChangedSortOption(object sender, EventArgs e)
     {
@@ -265,7 +262,7 @@ public partial class UIHandler : BasaltForm
         Core.CurrentPage.Lister.RefreshList();
     }
 
-    // Side section bottom
+    // Side section grouping
 
     private void ClickedInstallAll(object sender, EventArgs e)
     {
@@ -287,7 +284,7 @@ public partial class UIHandler : BasaltForm
         Core.CurrentPage.Grouper.DisableAll();
     }
 
-    // Side section lower
+    // Side section starting
 
     private void CheckedStartOption(object sender, EventArgs e)
     {

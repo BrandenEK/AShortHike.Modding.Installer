@@ -252,6 +252,7 @@ namespace Blasphemous.Modding.Installer
             // 
             // _left_all_install
             // 
+            _left_all_install.AutoSize = true;
             _left_all_install.BackColor = Color.FromArgb(30, 30, 30);
             _left_all_install.FlatAppearance.BorderColor = Color.FromArgb(30, 30, 30);
             _left_all_install.FlatAppearance.MouseDownBackColor = Color.FromArgb(30, 30, 30);
@@ -269,6 +270,7 @@ namespace Blasphemous.Modding.Installer
             // 
             // _left_all_enable
             // 
+            _left_all_enable.AutoSize = true;
             _left_all_enable.BackColor = Color.FromArgb(30, 30, 30);
             _left_all_enable.FlatAppearance.BorderColor = Color.FromArgb(30, 30, 30);
             _left_all_enable.FlatAppearance.MouseDownBackColor = Color.FromArgb(30, 30, 30);
@@ -286,6 +288,7 @@ namespace Blasphemous.Modding.Installer
             // 
             // _left_all_uninstall
             // 
+            _left_all_uninstall.AutoSize = true;
             _left_all_uninstall.BackColor = Color.FromArgb(30, 30, 30);
             _left_all_uninstall.FlatAppearance.BorderColor = Color.FromArgb(30, 30, 30);
             _left_all_uninstall.FlatAppearance.MouseDownBackColor = Color.FromArgb(30, 30, 30);
@@ -295,7 +298,7 @@ namespace Blasphemous.Modding.Installer
             _left_all_uninstall.ForeColor = SystemColors.ButtonHighlight;
             _left_all_uninstall.Location = new Point(115, 15);
             _left_all_uninstall.Name = "_left_all_uninstall";
-            _left_all_uninstall.Size = new Size(100, 35);
+            _left_all_uninstall.Size = new Size(102, 35);
             _left_all_uninstall.TabIndex = 5;
             _left_all_uninstall.Text = "Uninstall all";
             _left_all_uninstall.UseVisualStyleBackColor = false;
@@ -303,6 +306,7 @@ namespace Blasphemous.Modding.Installer
             // 
             // _left_all_disable
             // 
+            _left_all_disable.AutoSize = true;
             _left_all_disable.BackColor = Color.FromArgb(30, 30, 30);
             _left_all_disable.FlatAppearance.BorderColor = Color.FromArgb(30, 30, 30);
             _left_all_disable.FlatAppearance.MouseDownBackColor = Color.FromArgb(30, 30, 30);
@@ -436,6 +440,7 @@ namespace Blasphemous.Modding.Installer
             // 
             // _left_details_version
             // 
+            _left_details_version.BackColor = Color.FromArgb(40, 40, 40);
             _left_details_version.Font = new Font("Trebuchet MS", 9F, FontStyle.Regular, GraphicsUnit.Point);
             _left_details_version.ForeColor = Color.White;
             _left_details_version.Location = new Point(3, 100);
@@ -447,6 +452,7 @@ namespace Blasphemous.Modding.Installer
             // 
             // _left_details_desc
             // 
+            _left_details_desc.BackColor = Color.FromArgb(40, 40, 40);
             _left_details_desc.Font = new Font("Trebuchet MS", 9F, FontStyle.Regular, GraphicsUnit.Point);
             _left_details_desc.ForeColor = Color.White;
             _left_details_desc.Location = new Point(3, 35);
@@ -457,6 +463,7 @@ namespace Blasphemous.Modding.Installer
             // 
             // _left_details_name
             // 
+            _left_details_name.BackColor = Color.FromArgb(40, 40, 40);
             _left_details_name.Font = new Font("Trebuchet MS", 12F, FontStyle.Regular, GraphicsUnit.Point);
             _left_details_name.ForeColor = Color.White;
             _left_details_name.Location = new Point(3, 5);
@@ -498,6 +505,8 @@ namespace Blasphemous.Modding.Installer
             // 
             // _left_page_blas1mod
             // 
+            _left_page_blas1mod.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            _left_page_blas1mod.AutoSize = true;
             _left_page_blas1mod.BackColor = Color.FromArgb(30, 30, 30);
             _left_page_blas1mod.FlatAppearance.BorderColor = Color.FromArgb(30, 30, 30);
             _left_page_blas1mod.FlatAppearance.MouseDownBackColor = Color.FromArgb(30, 30, 30);
@@ -507,7 +516,7 @@ namespace Blasphemous.Modding.Installer
             _left_page_blas1mod.ForeColor = SystemColors.ButtonHighlight;
             _left_page_blas1mod.Location = new Point(0, 45);
             _left_page_blas1mod.Name = "_left_page_blas1mod";
-            _left_page_blas1mod.Size = new Size(220, 35);
+            _left_page_blas1mod.Size = new Size(220, 36);
             _left_page_blas1mod.TabIndex = 1;
             _left_page_blas1mod.Text = "Blasphemous Mods";
             _left_page_blas1mod.UseVisualStyleBackColor = false;
@@ -515,6 +524,8 @@ namespace Blasphemous.Modding.Installer
             // 
             // _left_page_blas1skin
             // 
+            _left_page_blas1skin.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            _left_page_blas1skin.AutoSize = true;
             _left_page_blas1skin.BackColor = Color.FromArgb(30, 30, 30);
             _left_page_blas1skin.FlatAppearance.BorderColor = Color.FromArgb(30, 30, 30);
             _left_page_blas1skin.FlatAppearance.MouseDownBackColor = Color.FromArgb(30, 30, 30);
@@ -524,7 +535,7 @@ namespace Blasphemous.Modding.Installer
             _left_page_blas1skin.ForeColor = SystemColors.ButtonHighlight;
             _left_page_blas1skin.Location = new Point(0, 90);
             _left_page_blas1skin.Name = "_left_page_blas1skin";
-            _left_page_blas1skin.Size = new Size(220, 35);
+            _left_page_blas1skin.Size = new Size(220, 36);
             _left_page_blas1skin.TabIndex = 2;
             _left_page_blas1skin.Text = "Blasphemous Skins";
             _left_page_blas1skin.UseVisualStyleBackColor = false;
@@ -532,6 +543,8 @@ namespace Blasphemous.Modding.Installer
             // 
             // _left_page_blas2mod
             // 
+            _left_page_blas2mod.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            _left_page_blas2mod.AutoSize = true;
             _left_page_blas2mod.BackColor = Color.FromArgb(30, 30, 30);
             _left_page_blas2mod.FlatAppearance.BorderColor = Color.FromArgb(30, 30, 30);
             _left_page_blas2mod.FlatAppearance.MouseDownBackColor = Color.FromArgb(30, 30, 30);
@@ -541,7 +554,7 @@ namespace Blasphemous.Modding.Installer
             _left_page_blas2mod.ForeColor = SystemColors.ButtonHighlight;
             _left_page_blas2mod.Location = new Point(0, 135);
             _left_page_blas2mod.Name = "_left_page_blas2mod";
-            _left_page_blas2mod.Size = new Size(220, 35);
+            _left_page_blas2mod.Size = new Size(220, 36);
             _left_page_blas2mod.TabIndex = 3;
             _left_page_blas2mod.Text = "Blasphemous II Mods";
             _left_page_blas2mod.UseVisualStyleBackColor = false;
@@ -655,26 +668,26 @@ namespace Blasphemous.Modding.Installer
             // 
             // _middle_tools_icon
             // 
-            _middle_tools_icon.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            _middle_tools_icon.BackColor = Color.Transparent;
+            _middle_tools_icon.BackColor = SystemColors.WindowFrame;
             _middle_tools_icon.BackgroundImageLayout = ImageLayout.Zoom;
             _middle_tools_icon.Cursor = Cursors.Hand;
-            _middle_tools_icon.Location = new Point(275, 0);
+            _middle_tools_icon.Dock = DockStyle.Right;
+            _middle_tools_icon.Location = new Point(272, 0);
             _middle_tools_icon.Name = "_middle_tools_icon";
-            _middle_tools_icon.Size = new Size(25, 25);
+            _middle_tools_icon.Size = new Size(28, 26);
             _middle_tools_icon.TabIndex = 8;
             _middle_tools_icon.TabStop = false;
             _middle_tools_icon.Click += ClickedToolsStatus;
             // 
             // _middle_tools_text
             // 
-            _middle_tools_text.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            _middle_tools_text.BackColor = Color.FromArgb(0, 0, 0, 0);
+            _middle_tools_text.BackColor = SystemColors.WindowFrame;
             _middle_tools_text.Cursor = Cursors.Hand;
-            _middle_tools_text.Font = new Font("Trebuchet MS", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            _middle_tools_text.Location = new Point(0, 1);
+            _middle_tools_text.Dock = DockStyle.Fill;
+            _middle_tools_text.Font = new Font("Trebuchet MS", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
+            _middle_tools_text.Location = new Point(0, 0);
             _middle_tools_text.Name = "_middle_tools_text";
-            _middle_tools_text.Size = new Size(275, 25);
+            _middle_tools_text.Size = new Size(272, 26);
             _middle_tools_text.TabIndex = 7;
             _middle_tools_text.Text = "Modding tools";
             _middle_tools_text.TextAlign = ContentAlignment.MiddleRight;
@@ -723,13 +736,13 @@ namespace Blasphemous.Modding.Installer
             // 
             // _middle_path
             // 
-            _middle_path.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            _middle_path.BackColor = Color.FromArgb(0, 0, 0, 0);
+            _middle_path.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            _middle_path.BackColor = SystemColors.WindowFrame;
             _middle_path.Cursor = Cursors.Hand;
             _middle_path.Font = new Font("Trebuchet MS", 12F, FontStyle.Italic, GraphicsUnit.Point);
-            _middle_path.Location = new Point(10, 2);
+            _middle_path.Location = new Point(10, 0);
             _middle_path.Name = "_middle_path";
-            _middle_path.Size = new Size(1000, 25);
+            _middle_path.Size = new Size(1000, 28);
             _middle_path.TabIndex = 9;
             _middle_path.Text = "Root Folder text";
             _middle_path.TextAlign = ContentAlignment.MiddleLeft;
@@ -737,13 +750,13 @@ namespace Blasphemous.Modding.Installer
             // 
             // _middle_tools
             // 
-            _middle_tools.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            _middle_tools.BackColor = Color.FromArgb(0, 0, 0, 0);
-            _middle_tools.Controls.Add(_middle_tools_icon);
+            _middle_tools.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            _middle_tools.BackColor = SystemColors.WindowFrame;
             _middle_tools.Controls.Add(_middle_tools_text);
+            _middle_tools.Controls.Add(_middle_tools_icon);
             _middle_tools.Location = new Point(1000, 1);
             _middle_tools.Name = "_middle_tools";
-            _middle_tools.Size = new Size(300, 25);
+            _middle_tools.Size = new Size(300, 26);
             _middle_tools.TabIndex = 9;
             _middle_tools.Visible = false;
             // 
@@ -769,12 +782,14 @@ namespace Blasphemous.Modding.Installer
             _left_start.ResumeLayout(false);
             _left_start.PerformLayout();
             _left_all.ResumeLayout(false);
+            _left_all.PerformLayout();
             _left_sort.ResumeLayout(false);
             _left_sort.PerformLayout();
             _left_details.ResumeLayout(false);
             _left_details_outer.ResumeLayout(false);
             _left_details_inner.ResumeLayout(false);
             _left_page.ResumeLayout(false);
+            _left_page.PerformLayout();
             _top.ResumeLayout(false);
             _top_outer.ResumeLayout(false);
             _top_inner.ResumeLayout(false);

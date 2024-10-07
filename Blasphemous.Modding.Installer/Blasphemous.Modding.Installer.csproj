@@ -11,11 +11,12 @@
     <Authors>Damocles</Authors>
     <Company>Damocles</Company>
     <Description>Easily installs mods for A Short Hike</Description>
-    <Version>1.7.1</Version>
+    <Version>1.7.2</Version>
 
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWindowsForms>true</UseWindowsForms>
+    <ForceDesignerDpiUnaware>true</ForceDesignerDpiUnaware>
   </PropertyGroup>
 
   <ItemGroup>
@@ -24,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Basalt.BetterForms" Version="1.1.1" />
+    <PackageReference Include="Basalt.BetterForms" Version="1.2.1" />
     <PackageReference Include="Basalt.CommandParser" Version="1.0.1" />
     <PackageReference Include="Basalt.Framework.Logging" Version="1.1.1" />
     <PackageReference Include="DotNetZip" Version="1.16.0" />
