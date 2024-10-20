@@ -15,11 +15,11 @@
 ---
 
 ### Manual installation
-1. Install the modding tools (One time only)
-   - Click this link to download the [Windows](https://github.com/BrandenEK/AShortHike.ModdingTools/raw/main/modding-tools-windows.zip) or [Linux](https://github.com/BrandenEK/AShortHike.ModdingTools/raw/main/modding-tools-linux.zip) version of the modding tools
+1. Install or update the modding tools
+   - Click the link to download the tools for your operating system ([Windows](https://github.com/BrandenEK/AShortHike.ModdingTools/raw/main/modding-tools-windows.zip)/[Linux](https://github.com/BrandenEK/AShortHike.ModdingTools/raw/main/modding-tools-linux.zip)/[Mac](https://github.com/BrandenEK/AShortHike.ModdingTools/raw/main/modding-tools-mac.zip))
    - Extract the contents of the zip file into the game's root directory
    - You should now have a folder called "Modding" in the same folder as "AShortHike.exe"
-2. Install the mod (Whenever there is an update)
+2. Install or update the mod
    - On the mod's github page, navigate to the latest release
    - Download the file called "ModName.zip" and extract the contents of the zip file into the "Modding" folder
    - You should now have a file called "ModName.dll" in the "Modding/plugins" folder
