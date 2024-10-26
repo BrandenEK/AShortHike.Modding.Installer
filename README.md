@@ -19,6 +19,7 @@
    - Click the link to download the tools for your operating system ([Windows](https://github.com/BrandenEK/AShortHike.ModdingTools/raw/main/modding-tools-windows.zip)/[Linux](https://github.com/BrandenEK/AShortHike.ModdingTools/raw/main/modding-tools-linux.zip)/[Mac](https://github.com/BrandenEK/AShortHike.ModdingTools/raw/main/modding-tools-mac.zip))
    - Extract the contents of the zip file into the game's root directory
    - You should now have a folder called "Modding" in the same folder as "AShortHike.exe"
+   - If using Steam on unix, follow the [BepInEx docs](https://docs.bepinex.dev/articles/advanced/steam_interop.html) to configure it properly
 2. Install or update the mod
    - On the mod's github page, navigate to the latest release
    - Download the file called "ModName.zip" and extract the contents of the zip file into the "Modding" folder
