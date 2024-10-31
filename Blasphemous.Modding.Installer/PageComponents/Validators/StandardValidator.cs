@@ -193,12 +193,15 @@ internal class StandardValidator : IValidator
     {
         get
         {
+            if (string.IsNullOrEmpty(_settings.RootFolder))
+                return false;
+
             string path = Path.Combine(_settings.RootFolder, _exeName);
             return File.Exists(path);
         }
     }
 
-    private bool AreModdingToolsInstalled
+    public bool AreModdingToolsInstalled
     {
         get
         {
@@ -207,7 +210,7 @@ internal class StandardValidator : IValidator
         }
     }
 
-    private bool AreModdingToolsUpdated
+    public bool AreModdingToolsUpdated
     {
         get
         {
