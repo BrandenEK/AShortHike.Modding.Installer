@@ -28,5 +28,15 @@
     "GithubRepo": "AShortHike.MapTracker",
     "PluginFile": "MapTracker.dll",
     "Dependencies": [ "Modding API" ]
+  },
+  {
+    "Name": "More Save Slots",
+    "Author": "kavinkul",
+    "Description": "Adds more save slots",
+    "InitialReleaseDate": "2024-12-24",
+    "GithubAuthor": "kavinkul",
+    "GithubRepo": "AShortHike.MoreSaveSlots",
+    "PluginFile": "MoreSaveSlots.dll",
+    "Dependencies": [ "Modding API" ]
   }
 ]
