@@ -16,7 +16,7 @@
 
 ### Manual installation
 1. Install or update the modding tools
-   - Click the link to download the tools for your operating system ([Windows](https://github.com/BrandenEK/AShortHike.ModdingTools/raw/main/modding-tools-windows.zip)/[Linux (x64)](https://github.com/BrandenEK/AShortHike.ModdingTools/raw/main/modding-tools-linux-steam.zip)/[Linux (x32)](https://github.com/BrandenEK/AShortHike.ModdingTools/raw/main/modding-tools-linux-itch.zip)/[Mac](https://github.com/BrandenEK/AShortHike.ModdingTools/raw/main/modding-tools-mac.zip))
+   - Click the link to download the tools for your operating system ([Windows](https://github.com/BrandenEK/AShortHike.ModdingTools/raw/main/modding-tools-windows.zip)/[Linux (x64)](https://github.com/BrandenEK/AShortHike.ModdingTools/raw/main/modding-tools-linux-x64.zip)/[Linux (x32)](https://github.com/BrandenEK/AShortHike.ModdingTools/raw/main/modding-tools-linux-x32.zip)/[Mac](https://github.com/BrandenEK/AShortHike.ModdingTools/raw/main/modding-tools-mac.zip))
    - Extract the contents of the zip file into the game's root directory
    - You should now have a folder called "Modding" in the same folder as "AShortHike.exe"
    - If using Steam on unix, follow the [BepInEx docs](https://docs.bepinex.dev/articles/advanced/steam_interop.html) to configure it properly
