@@ -4,8 +4,13 @@
 
 ---
 
-### Automatic installation (Windows only)
-todo
+### Automatic installation
+1. Download the most recent version of the installer from the [Releases](https://github.com/BrandenEK/AShortHike.Modding.Installer/releases) page
+   - You may need to make an exception for it in your antivirus
+3. Run the 'ShortHikeModInstaller.exe' program
+   - You may need to install the .net runtime
+4. Locate the exe file for the game through the UI
+5. Install the modding tools for the game through the UI
 
 > [!IMPORTANT]
 > Automatic installation is currently only available on Windows
@@ -13,7 +18,16 @@ todo
 ---
 
 ### Manual installation
-todo
+1. Install or update the modding tools
+   - Click the link to download the tools for your operating system ([Windows](https://github.com/BrandenEK/AShortHike.ModdingTools/raw/main/modding-tools-windows.zip)/[Linux (x64)](https://github.com/BrandenEK/AShortHike.ModdingTools/raw/main/modding-tools-linux-x64.zip)/[Linux (x32)](https://github.com/BrandenEK/AShortHike.ModdingTools/raw/main/modding-tools-linux-x32.zip)/[Mac](https://github.com/BrandenEK/AShortHike.ModdingTools/raw/main/modding-tools-mac.zip))
+   - Extract the contents of the zip file into the game's root directory
+   - You should now have a folder called "Modding" in the same folder as "AShortHike.exe"
+   - If using Steam on unix, follow the [BepInEx docs](https://docs.bepinex.dev/articles/advanced/steam_interop.html) to configure it properly
+2. Install or update the mod
+   - On the mod's github page, navigate to the latest release
+   - Download the file called "ModName.zip" and extract the contents of the zip file into the "Modding" folder
+   - You should now have a file called "ModName.dll" in the "Modding/plugins" folder
+   - Repeat this step for all of the mod's dependencies
 
 ---
 
