@@ -487,6 +487,8 @@ namespace Blasphemous.Modding.Installer
             // 
             // _left_page_shmod
             // 
+            _left_page_shmod.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            _left_page_shmod.AutoSize = true;
             _left_page_shmod.BackColor = Color.FromArgb(30, 30, 30);
             _left_page_shmod.FlatAppearance.BorderColor = Color.FromArgb(30, 30, 30);
             _left_page_shmod.FlatAppearance.MouseDownBackColor = Color.FromArgb(30, 30, 30);

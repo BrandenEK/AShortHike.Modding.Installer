@@ -92,6 +92,7 @@ public partial class UIHandler : BasaltForm
         _left_page_blas1skin.SetSpecial(section == SectionType.Blas1Skins);
         _left_page_blas2mod.SetSpecial(section == SectionType.Blas2Mods);
         _left_page_blas2skin.SetSpecial(section == SectionType.Blas2Skins);
+        _left_page_shmod.SetSpecial(section == SectionType.HikeMods);
 
         // Handle UI for sorting and filtering
         _left_sort.Visible = validated;
