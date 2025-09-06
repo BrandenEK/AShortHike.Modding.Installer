@@ -138,7 +138,7 @@ internal class Mod
         _downloading = true;
         _ui.ShowDownloadingStatus();
 
-        await client.DownloadFileAsync(new Uri(Data.latestDownloadURL), zipCache);
+        await client.DownloadFileAsync(new Uri(Data.latestDownloadURL), zipCache, Core.HTTP_TIMEOUT);
 
         _downloading = false;
     }
@@ -329,7 +329,7 @@ internal class Mod
 
     public void UpdateUI()
     {
-        _ui.UpdateUI(Data.name, (Installed ? LocalVersion.ToString(3) : Data.latestVersion), Data.author, Installed, Enabled, UpdateAvailable);
+        _ui.UpdateUI(Data.name, (Installed ? LocalVersion.ToString(3) : Data.latestVersion), Data.author, Data.description, Installed, Enabled, UpdateAvailable);
     }
 
     public void SetUIPosition(int modIdx)
@@ -341,8 +341,4 @@ internal class Mod
     {
         _ui.SetVisibility(visible);
     }
-
-    public void OnStartHover() => ModPage.Previewer.PreviewMod(this);
-
-    public void OnEndHover() => ModPage.Previewer.Clear();
 }

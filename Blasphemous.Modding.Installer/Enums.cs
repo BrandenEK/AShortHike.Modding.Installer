@@ -7,6 +7,7 @@ public enum SectionType
     Blas1Mods,
     Blas1Skins,
     Blas2Mods,
+    Blas2Skins,
 }
 
 public enum SortType

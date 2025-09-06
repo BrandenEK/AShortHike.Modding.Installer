@@ -176,11 +176,11 @@ internal class StandardValidator : IValidator
         Directory.CreateDirectory(Path.GetDirectoryName(toolsCache)!);
 
         // If tools dont already exist in cache, download from web
-        if (!File.Exists(toolsCache))
+        if (!File.Exists(toolsCache) || new FileInfo(toolsCache).Length == 0)
         {
             Logger.Warn("Downloading modding tools from web");
             using var client = new HttpClient();
-            await client.DownloadFileAsync(new Uri(_remoteDownloadPath), toolsCache);
+            await client.DownloadFileAsync(new Uri(_remoteDownloadPath), toolsCache, Core.HTTP_TIMEOUT);
         }
 
         // Extract data in cache to game folder
