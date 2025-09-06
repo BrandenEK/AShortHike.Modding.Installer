@@ -1,11 +1,10 @@
 ﻿using Basalt.BetterForms;
-using Basalt.Framework.Logging;
+using Blasphemous.Modding.Installer.Models;
 using Blasphemous.Modding.Installer.Mods;
 using Blasphemous.Modding.Installer.PageComponents.Filters;
 using Blasphemous.Modding.Installer.PageComponents.Groupers;
 using Blasphemous.Modding.Installer.PageComponents.Listers;
 using Blasphemous.Modding.Installer.PageComponents.Loaders;
-using Blasphemous.Modding.Installer.PageComponents.Previewers;
 using Blasphemous.Modding.Installer.PageComponents.Sorters;
 using Blasphemous.Modding.Installer.PageComponents.Starters;
 using Blasphemous.Modding.Installer.PageComponents.Validators;
@@ -20,44 +19,23 @@ static class Core
     [STAThread]
     static void Main()
     {
+        Initialized = true;
         BasaltApplication.Run<UIHandler, InstallerCommand, InstallerSettings>(InitializeCore, "Short Hike Mod Installer", new string[]
         {
             InstallerFolder, CacheFolder
         });
     }
 
-    /// <summary>
-    /// When the app is started, clear cache that used to exist in root data folder.
-    /// Get rid of this method after enough time.  Added in 1.6
-    /// </summary>
-    static void TemporaryClearDataFolder()
-    {
-        // Delete all files other than the log
-        foreach (var file in Directory.GetFiles(InstallerFolder).Where(x => Path.GetExtension(x) != ".log" && Path.GetExtension(x) != ".cfg"))
-        {
-            Logger.Debug($"Deleting {file} from the installer folder");
-            File.Delete(file);
-        }
-
-        // Delete all directories other than the cache
-        foreach (var dir in Directory.GetDirectories(InstallerFolder).Where(x => Path.GetFileName(x) != "cache"))
-        {
-            Logger.Debug($"Deleting {dir} from the installer folder");
-            Directory.Delete(dir, true);
-        }
-    }
-
     static void InitializeCore(UIHandler form, InstallerCommand cmd, InstallerSettings settings)
     {
-        TemporaryClearDataFolder();
-
         TempConfig = settings;
         var blas1gameSettings = settings.GetGameSettings("blas1");
         var blas2gameSettings = settings.GetGameSettings("blas2");
+        var hikeGameSettings = settings.GetGameSettings("hike");
         var blas1modPageSettings = settings.GetPageSettings("blas1mods");
         var blas1skinPageSettings = settings.GetPageSettings("blas1skins");
         var blas2modPageSettings = settings.GetPageSettings("blas2mods");
-        var hikeGameSettings = settings.GetGameSettings("hike");
+        var blas2skinPageSettings = settings.GetPageSettings("blas2skins");
         var hikeModPageSettings = settings.GetPageSettings("hikemods");
 
         UIHandler = form;
@@ -68,35 +46,60 @@ static class Core
         List<Mod> blas1mods = new List<Mod>();
         List<Skin> blas1skins = new List<Skin>();
         List<Mod> blas2mods = new List<Mod>();
+        List<Skin> blas2skins = new List<Skin>();
         List<Mod> hikeMods = new();
 
+        // Titles
         string blas1modTitle = "Blasphemous Mods";
         string blas1skinTitle = "Blasphemous Skins";
         string blas2modTitle = "Blasphemous II Mods";
+        string blas2skinTitle = "Blasphemous II Skins";
         string hikeModTitle = "Short Hike Mods";
+
+        // Headers
+        var blas1headers = new List<HeaderImage>()
+        {
+            new HeaderImage("Convent of Our Lady", Resources.blas1header, true, false, -500),
+            new HeaderImage("Crimson Forest", Resources.blas1forest, false, false, -490),
+            new HeaderImage("The Penitent One", Resources.blas1penitent, false, false, -230),
+        };
+        var blas2headers = new List<HeaderImage>()
+        {
+            new HeaderImage("The Penitent One", Resources.blas2header, true, false, -340),
+            new HeaderImage("Mea Culpa", Resources.blas2meaculpa, false, true, -260),
+            new HeaderImage("The Resting Place", Resources.blas2coffin, false, false, -500),
+        };
+        var hikeheaders = new List<HeaderImage>()
+        {
+            new HeaderImage("Classic", Resources.background_sh, false, false, 0)
+        };
 
         // Sorters
         var blas1modSorter = new ModSorter(blas1modPageSettings);
         var blas1skinSorter = new SkinSorter(blas1skinPageSettings);
         var blas2modSorter = new ModSorter(blas2modPageSettings);
+        var blas2skinSorter = new SkinSorter(blas2skinPageSettings);
         var hikemodSorter = new ModSorter(hikeModPageSettings);
 
         // Filters
         var blas1modFilter = new ModFilter(blas1modPageSettings);
         var blas1skinFilter = new SkinFilter(blas1skinPageSettings);
         var blas2modFilter = new ModFilter(blas2modPageSettings);
+        var blas2skinFilter = new SkinFilter(blas2skinPageSettings);
         var hikeModFilter = new ModFilter(hikeModPageSettings);
 
         // Groupers
         var blas1modGrouper = new ModGrouper(blas1modTitle, blas1mods, blas1modFilter);
         var blas1skinGrouper = new SkinGrouper(blas1skinTitle, blas1skins, blas1skinFilter);
         var blas2modGrouper = new ModGrouper(blas2modTitle, blas2mods, blas2modFilter);
+        var blas2skinGrouper = new SkinGrouper(blas2skinTitle, blas2skins, blas2skinFilter);
         var hikeModGrouper = new ModGrouper(hikeModTitle, hikeMods, hikeModFilter);
 
         // Listers
         var blas1modLister = new ModLister(UIHandler.DataHolder, blas1mods, blas1modSorter, blas1modFilter);
         var blas1skinLister = new SkinLister(UIHandler.DataHolder, blas1skins, blas1skinSorter, blas1skinFilter);
         var blas2modLister = new ModLister(UIHandler.DataHolder, blas2mods, blas2modSorter, blas2modFilter);
+        var blas2skinLister = new SkinLister(UIHandler.DataHolder, blas2skins, blas2skinSorter, blas2skinFilter);
         var hikeModLister = new ModLister(UIHandler.DataHolder, hikeMods, hikemodSorter, hikeModFilter);
 
         // Loaders
@@ -123,6 +126,14 @@ static class Core
             blas2mods,
             SectionType.Blas2Mods,
             blas2modPageSettings,
+            blas2gameSettings);
+        var blas2skinLoader = new SkinLoader(
+            "blasphemous2",
+            cmd.IgnoreTime,
+            blas2skinLister,
+            blas2skins,
+            SectionType.Blas2Skins,
+            blas2skinPageSettings,
             blas2gameSettings);
         var hikeModLoader = new ModLoader(
             "https://raw.githubusercontent.com/BrandenEK/AShortHike.ModInstaller/main/ShortHikeMods.json",
@@ -163,45 +174,46 @@ static class Core
         var blas2Starter = new Blas2Starter(blas2Validator, blas2gameSettings);
         var hikeStarter = new HikeStarter(hikeValidator, hikeGameSettings);
 
-        // Previewers
-        var modPreviewer = new ModPreviewer();
-        var skinPreviewer = new SkinPreviewer();
-
-        var blas1modPage = new InstallerPage(blas1modTitle, Resources.background1,
+        var blas1modPage = new InstallerPage(blas1modTitle, blas1headers,
             blas1modGrouper,
             blas1modLister,
             blas1modLoader,
-            modPreviewer,
             blas1Validator,
             blas1Starter,
             blas1modPageSettings,
             blas1gameSettings);
 
-        var blas1skinPage = new InstallerPage(blas1skinTitle, Resources.background1,
+        var blas1skinPage = new InstallerPage(blas1skinTitle, blas1headers,
             blas1skinGrouper,
             blas1skinLister,
             blas1skinLoader,
-            skinPreviewer,
             blas1Validator,
             blas1Starter,
             blas1skinPageSettings,
             blas1gameSettings);
 
-        var blas2modPage = new InstallerPage(blas2modTitle, Resources.background2,
+        var blas2modPage = new InstallerPage(blas2modTitle, blas2headers,
             blas2modGrouper,
             blas2modLister,
             blas2modLoader,
-            modPreviewer,
             blas2Validator,
             blas2Starter,
             blas2modPageSettings,
             blas2gameSettings);
 
-        var hikeModPage = new InstallerPage(hikeModTitle, Resources.background_sh,
+        var blas2SkinPage = new InstallerPage(blas2skinTitle, blas2headers,
+            blas2skinGrouper,
+            blas2skinLister,
+            blas2skinLoader,
+            blas2Validator,
+            blas2Starter,
+            blas2skinPageSettings,
+            blas2gameSettings);
+
+        var hikeModPage = new InstallerPage(hikeModTitle, hikeheaders,
             hikeModGrouper,
             hikeModLister,
             hikeModLoader,
-            modPreviewer,
             hikeValidator,
             hikeStarter,
             hikeModPageSettings,
@@ -210,6 +222,7 @@ static class Core
         _pages.Add(SectionType.Blas1Mods, blas1modPage);
         _pages.Add(SectionType.Blas1Skins, blas1skinPage);
         _pages.Add(SectionType.Blas2Mods, blas2modPage);
+        _pages.Add(SectionType.Blas2Skins, blas2SkinPage);
         _pages.Add(SectionType.HikeMods, hikeModPage);
 
         UIHandler.UpdateBlasButtonsVisibility(cmd.ShowBlasphemous);
@@ -217,6 +230,7 @@ static class Core
 
     // Config
 
+    public static bool Initialized { get; private set; } = false;
     public static InstallerSettings TempConfig { get; private set; } = new();
 
     public static UIHandler UIHandler { get; private set; }
@@ -230,8 +244,11 @@ static class Core
     public static InstallerPage Blas1ModPage => _pages[SectionType.Blas1Mods];
     public static InstallerPage Blas1SkinPage => _pages[SectionType.Blas1Skins];
     public static InstallerPage Blas2ModPage => _pages[SectionType.Blas2Mods];
+    public static InstallerPage Blas2SkinPage => _pages[SectionType.Blas2Skins];
     public static InstallerPage HikeModPage => _pages[SectionType.HikeMods];
 
     public static string InstallerFolder { get; } = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "BlasModInstaller");
     public static string CacheFolder { get; } = Path.Combine(InstallerFolder, "cache");
+
+    public const int HTTP_TIMEOUT = 2000;
 }

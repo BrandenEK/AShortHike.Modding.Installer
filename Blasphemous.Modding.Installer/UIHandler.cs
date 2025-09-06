@@ -1,6 +1,8 @@
 ﻿using Basalt.BetterForms;
 using Basalt.Framework.Logging;
+using Blasphemous.Modding.Installer.Models;
 using Blasphemous.Modding.Installer.PageComponents.Validators;
+using System.Diagnostics;
 
 namespace Blasphemous.Modding.Installer;
 
@@ -10,7 +12,6 @@ public partial class UIHandler : BasaltForm
 
     protected override void OnFormOpen()
     {
-        ClearPreview();
         OpenSection(Core.TempConfig.LastSection);
     }
 
@@ -64,7 +65,6 @@ public partial class UIHandler : BasaltForm
 
     private void OpenSection(SectionType section)
     {
-        Core.CurrentPage.Previewer.Clear();
         Core.CurrentPage.Lister.ClearList();
 
         //Core.SettingsHandler.Properties.CurrentSection = section;
@@ -72,8 +72,7 @@ public partial class UIHandler : BasaltForm
         var currentPage = Core.CurrentPage;
 
         // Update background and info
-        _top_text.Text = currentPage.Title;
-        _top_inner.BackgroundImage = currentPage.Image;
+        UpdateHeaderSection(currentPage);
 
         // Validate the status of mods
         bool validated = currentPage.Validator.IsRootFolderValid;
@@ -87,6 +86,13 @@ public partial class UIHandler : BasaltForm
         // Refresh all ui elements on the page
         currentPage.Lister.RefreshList();
         currentPage.Grouper.RefreshAll();
+
+        // Handle UI for paging
+        _left_page_blas1mod.SetSpecial(section == SectionType.Blas1Mods);
+        _left_page_blas1skin.SetSpecial(section == SectionType.Blas1Skins);
+        _left_page_blas2mod.SetSpecial(section == SectionType.Blas2Mods);
+        _left_page_blas2skin.SetSpecial(section == SectionType.Blas2Skins);
+        _left_page_shmod.SetSpecial(section == SectionType.HikeMods);
 
         // Handle UI for sorting and filtering
         _left_sort.Visible = validated;
@@ -126,13 +132,11 @@ public partial class UIHandler : BasaltForm
 
         // Handle UI for grouping
         _left_all.Visible = validated;
+        _left_all.Height = currentPage.Grouper.CanEnable ? 110 : 65;
         _left_all_install.Visible = currentPage.Grouper.CanInstall;
         _left_all_uninstall.Visible = currentPage.Grouper.CanInstall;
         _left_all_enable.Visible = currentPage.Grouper.CanEnable;
         _left_all_disable.Visible = currentPage.Grouper.CanEnable;
-
-        // Handle UI for previewing
-        _left_details.Visible = validated;
 
         // Handle UI for starting
         LaunchSettings launch = currentPage.GameSettings.Launch;
@@ -149,6 +153,45 @@ public partial class UIHandler : BasaltForm
 
     // Top section
 
+    private void UpdateHeaderSection(InstallerPage page)
+    {
+        HeaderImage header = page.CurrentHeader;
+
+        _top_text.Text = string.Empty;
+        _top_text.Text = page.Title;
+        _top_text.ForeColor = header.DarkMode ? Color.White : Color.Black;
+        _top_inner.ChangeHeader(header);
+    }
+
+    private void OnClickHeaderMenu(object sender, ToolStripItemClickedEventArgs e)
+    {
+        string name = e.ClickedItem.Name;
+        Logger.Info($"Selecting background: {name}");
+
+        Core.CurrentPage.GameSettings.HeaderImage = name;
+        UpdateHeaderSection(Core.CurrentPage);
+    }
+
+    private void OnOpenHeaderMenu(object sender, System.ComponentModel.CancelEventArgs e)
+    {
+        Logger.Info("Opening background selector");
+
+        // Remove old backgrounds
+        while (_menu_title.Items.Count > 2)
+        {
+            _menu_title.Items.RemoveAt(2);
+        }
+
+        // Create new backgrounds
+        foreach (string name in Core.CurrentPage.Headers.Select(x => x.Name))
+        {
+            ToolStripMenuItem item = (ToolStripMenuItem)_menu_title.Items.Add(name);
+            item.Name = name;
+            item.Text = name;
+            item.Checked = name == Core.CurrentPage.GameSettings.HeaderImage;
+        }
+    }
+
     public void UpdateVersionWarningVisibility(bool visible)
     {
         _top_warning_outer.Visible = visible;
@@ -161,10 +204,16 @@ public partial class UIHandler : BasaltForm
     public void UpdateRootFolderText(string text)
     {
         _middle_path.Text = text;
-        _middle_path.Width = _middle_path.PreferredWidth;
+        ResizedBar(null, new EventArgs());
     }
 
     private void ClickedRootFolder(object sender, EventArgs e) => PromptForRootFolder();
+
+    private void ResizedBar(object? _, EventArgs __)
+    {
+        int maxWidth = _middle_inner.Width - _middle_tools.Width - 10;
+        _middle_path.Width = Math.Min(maxWidth, _middle_path.PreferredWidth);
+    }
 
     // Middle section tools
 
@@ -212,29 +261,9 @@ public partial class UIHandler : BasaltForm
 
     private void ClickedBlas2Mods(object sender, EventArgs e) => OpenSection(SectionType.Blas2Mods);
 
+    private void ClickedBlas2Skins(object sender, EventArgs e) => OpenSection(SectionType.Blas2Skins);
+
     private void ClickedShortHikeMods(object sender, EventArgs e) => OpenSection(SectionType.HikeMods);
-
-    // Side section previewing
-
-    public void UpdatePreview(string name, string description, string version, Bitmap? image)
-    {
-        _left_details_name.Text = name;
-        _left_details_name.Visible = !string.IsNullOrEmpty(name);
-
-        _left_details_desc.Text = description;
-        _left_details_desc.Visible = !string.IsNullOrEmpty(description);
-
-        _left_details_version.Text = version;
-        _left_details_version.Visible = !string.IsNullOrEmpty(version);
-
-        _left_details_inner.BackgroundImage?.Dispose();
-        _left_details_inner.BackgroundImage = image;
-    }
-
-    public void ClearPreview()
-    {
-        UpdatePreview(string.Empty, string.Empty, string.Empty, null);
-    }
 
     // Side section sorting
 

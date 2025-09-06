@@ -13,6 +13,7 @@ public static class Colors
     public readonly static Color ORANGE = Color.FromArgb(255, 178, 102);
     public readonly static Color BLUE = Color.FromArgb(51, 153, 255);
 
+    public readonly static Color BORDER_SPECIAL = Color.FromArgb(255, 207, 64);
     public readonly static Color BORDER_SELECTED = Color.White;
     public readonly static Color BORDER_UNSELECTED = Color.FromArgb(30, 30, 30);
 }
@@ -21,15 +22,19 @@ public static class Fonts
 {
     public readonly static Font MOD_NAME = new Font("Verdana", 14, FontStyle.Bold);
     public readonly static Font MOD_AUTHOR = new Font("Verdana", 12, FontStyle.Italic);
+    public readonly static Font MOD_DESC = new Font("Verdana", 10, FontStyle.Regular);
 
     public readonly static Font SKIN_NAME = new Font("Verdana", 14, FontStyle.Bold);
     public readonly static Font SKIN_AUTHOR = new Font("Verdana", 12, FontStyle.Italic);
 
     public readonly static Font BUTTON = new Font("Trebuchet MS", 8, FontStyle.Bold);
+
+    public static readonly Font LINK_NORMAL = new Font("Trebuchet MS", 9.75f);
+    public static readonly Font LINK_HOVERED = new Font("Trebuchet MS", 11);
 }
 
 public static class Sizes
 {
-    public const int MOD_HEIGHT = 50;
-    public const int SKIN_HEIGHT = 50;
+    public const int MOD_HEIGHT = 84;
+    public const int SKIN_HEIGHT = 49;
 }
