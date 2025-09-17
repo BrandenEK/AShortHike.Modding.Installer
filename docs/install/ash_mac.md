@@ -6,6 +6,9 @@
 1. You should now have a folder called "Modding" in the same folder as "AShortHike.app"
 1. If using Steam, follow the [BepInEx docs](https://docs.bepinex.dev/articles/advanced/steam_interop.html) to configure it properly
 
+> [!NOTE]  
+> If this guide doesn't work or is missing information, please bring this up in Discord or make an issue on GitHub
+
 ### Installing or updating individual mods
 1. On the mod's github page, navigate to the latest release
 1. Download the file called "ModName.zip" and extract the contents of the zip file into the "Modding" folder
