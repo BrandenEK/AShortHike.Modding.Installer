@@ -4,7 +4,8 @@
 1. Download the [Mac version](https://github.com/BrandenEK/AShortHike.ModdingTools/raw/main/modding-tools-mac.zip) of the modding tools
 1. Extract the contents of the zip file into the game's root directory
 1. You should now have a folder called "Modding" in the same folder as "AShortHike.app"
-1. If using Steam, follow the [BepInEx docs](https://docs.bepinex.dev/articles/advanced/steam_interop.html) to configure it properly
+1. Mark the start script as executable with the command ```chmod u+x start_shorthike_modded.sh```
+1. If using Steam, set the steam launch options to ```<PATH>/start_shorthike_modded.sh # %command%``` where ```<PATH>``` is the full path to the game folder
 
 > [!NOTE]  
 > If this guide doesn't work or is missing information, please bring this up in Discord or make an issue on GitHub

@@ -4,8 +4,8 @@
 1. Download the [Linux version](https://github.com/BrandenEK/AShortHike.ModdingTools/raw/main/modding-tools-linux-x64.zip) of the modding tools
 1. Extract the contents of the zip file into the game's root directory
 1. You should now have a folder called "Modding" in the same folder as "AShortHike.x86_64"
-1. Mark the "start.sh" file as executable
-1. If using Steam, set the steam launch options to ```./start.sh %command%```
+1. Mark the start script as executable with the command ```chmod u+x start_shorthike_modded.sh```
+1. If using Steam, set the steam launch options to ```./start_shorthike_modded.sh # %command%```
 
 > [!NOTE]  
 > If this guide doesn't work or is missing information, please bring this up in Discord or make an issue on GitHub
