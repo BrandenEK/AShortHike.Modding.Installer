@@ -1,7 +1,7 @@
 # A Short Hike Manual Installation (Mac)
 
 ### Installing or updating the modding tools
-1. Download the [Mac version](https://github.com/BrandenEK/AShortHike.ModdingTools/raw/main/modding-tools-mac.zip) of the modding tools
+1. Download the [Mac version](https://github.com/BrandenEK/AShortHike.ModdingTools/raw/main/macos64.zip) of the modding tools
 1. Extract the contents of the zip file into the game's root directory
 1. You should now have a folder called "Modding" in the same folder as "AShortHike.app"
 1. Mark the start script as executable with the command ```chmod u+x start_shorthike_modded.sh```
