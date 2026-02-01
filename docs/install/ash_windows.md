@@ -1,7 +1,7 @@
 # A Short Hike Manual Installation (Windows)
 
 ### Installing or updating the modding tools
-1. Download the [Windows version](https://github.com/BrandenEK/AShortHike.ModdingTools/raw/main/modding-tools-windows.zip) of the modding tools
+1. Download the [Windows version](https://github.com/BrandenEK/AShortHike.ModdingTools/raw/main/win32.zip) of the modding tools
 1. Extract the contents of the zip file into the game's root directory
 1. You should now have a folder called "Modding" in the same folder as "AShortHike.exe"
 
